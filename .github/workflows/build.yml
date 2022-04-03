@@ -23,4 +23,4 @@ jobs:
         uses: docker://ghcr.io/chainguard-dev/apko:142b69fb30c7b4de1461ca0f599797a6b00a3a81 # apko-0.22
         with:
           entrypoint: apko
-          args: -v
+          #args: -
