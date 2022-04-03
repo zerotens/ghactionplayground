@@ -21,14 +21,12 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Start Build Container
         run: |
-          docker run --volume=$(pwd):/build/ --volume=${HOME}/.docker/config.json:/root/.docker/config.json -t ghcr.io/chainguard-dev/apko:142b69fb30c7b4de1461ca0f599797a6b00a3a81 publish /build/alpine-images/curl.yaml ghcr.io/zerotens/curl:latest
-      - name: Login to Registry
-        uses: docker://ghcr.io/chainguard-dev/apko:142b69fb30c7b4de1461ca0f599797a6b00a3a81 # apko-0.22
-        with:
-          entrypoint: apko
-          args: login
-      - name: Build Demo Image and publish it
-        uses: docker://ghcr.io/chainguard-dev/apko:142b69fb30c7b4de1461ca0f599797a6b00a3a81 # apko-0.22
-        with:
-          entrypoint: apko
-          #args:
+          docker run \
+          --volume=$(pwd):/build/ \
+          --volume=${HOME}/.docker/config.json:/root/.docker/config.json \
+          -t \
+          ghcr.io/chainguard-dev/apko:142b69fb30c7b4de1461ca0f599797a6b00a3a81 \
+          publish \
+          /build/alpine-images/curl.yaml \
+          ghcr.io/zerotens/curl:latest \
+          --arch=x86_64
