@@ -19,10 +19,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Dbg
+      - name: Start Build Container
         run: |
-          pwd
-          ls -la
+          docker run -v $(pwd):/build/ -v ${HOME}/.docker/config.json:/root/.docker/config.json -it ghcr.io/chainguard-dev/apko:142b69fb30c7b4de1461ca0f599797a6b00a3a81 -v /build/alpine-images/curl.yaml publish ghcr.io/zerotens/curl:latest
       - name: Login to Registry
         uses: docker://ghcr.io/chainguard-dev/apko:142b69fb30c7b4de1461ca0f599797a6b00a3a81 # apko-0.22
         with:
