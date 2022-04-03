@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/chainguard-dev/apko:sha256-d5543aa8349d18a0d6a884a0bc9935625d9620df021210be26e1e9ca038b414e.sig # apko-0.22
+      image: ghcr.io/chainguard-dev/apko:142b69fb30c7b4de1461ca0f599797a6b00a3a81 # apko-0.22
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -22,7 +22,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Log the step container node version
-        uses: docker://ghcr.io/chainguard-dev/apko:sha256-d5543aa8349d18a0d6a884a0bc9935625d9620df021210be26e1e9ca038b414e.sig
+        uses: docker://ghcr.io/chainguard-dev/apko:142b69fb30c7b4de1461ca0f599797a6b00a3a81
         with:
           entrypoint: apko
           args: -v
